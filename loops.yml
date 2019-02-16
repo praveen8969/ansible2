@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: git tree wget install in ubuntu14
+    apt:
+     name: {{ item }}
+     state: present
+    with items:
+     - wget
+     - tree
+     - git
+     
