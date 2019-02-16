@@ -5,10 +5,10 @@
   tasks:
   - name: git tree wget install in ubuntu14
     apt:
-     name: {{ item }}
+     name: "{{ item }}"
      state: present
-    with items:
+    with_items:
      - wget
      - tree
      - git
-     
+
