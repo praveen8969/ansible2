@@ -11,8 +11,9 @@
   - name: start webserver
     service:
      name: apache2
-     state: present
+     state: started
     when: ansible_os_family == "Debian" 
+
   - name: install webserver in redhat
     yum: 
      name: httpd
@@ -21,5 +22,5 @@
   - name: start webserver 
     service:
      name: httpd
-     state: present
+     state: started
      when: ansible_os_family == "RedHat" 
