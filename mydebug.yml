@@ -15,6 +15,7 @@
       name: git
       state: present
     when:  myresult.stderr ==""
+    ignore_errors: yes
 
   - name: install git , if no error in first tasks
     yum:
