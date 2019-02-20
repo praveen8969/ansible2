@@ -15,9 +15,21 @@
       name: git
       state: present
     when:  myresult.stderr ==""
+
+  - name: install git , if no error in first tasks
+    yum:
+      name: git
+      state: present
+    when:  myresult.stderr ==""
     
   - name: install tree, if  error in first tasks
     apt:
+      name: tree
+      state: present
+    when: myresult.stderr !=""
+
+  - name: install tree, if  error in first tasks
+    yum:
       name: tree
       state: present
     when: myresult.stderr !=""
