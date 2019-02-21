@@ -23,7 +23,7 @@
 - name: copy usr file in all nodes
   template: 
     src: template/mytomusr.j2
-    dest: vi /usr/share/tomcat/conf/tomcat-users.xml
+    dest: /usr/share/tomcat/conf/tomcat-users.xml
   notify: restarttomcat  
 
 - name: i want to deploy maha java war file into webapps 
