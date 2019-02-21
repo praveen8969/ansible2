@@ -1,2 +1,37 @@
 ---
 # tasks file for mytomrole
+- name: install tom
+  yum:
+    name: tomcat
+    state: present
+
+- name: copy tom config in to all nodes
+  template:
+    src: template/mytomconfig.j2
+    dest: /usr/share/tomcat/conf/tomcat.conf
+  notify: starttomcat  
+
+
+- name: install admin packages
+  yum:
+    name: "{{item}}"
+    state: present
+  with_items:
+    - tomcat-webapps
+    - tomcat-admin-webapps  
+  
+- name: copy usr file in all nodes
+  template: 
+    src: template/mytomusr.j2
+    dest: vi /usr/share/tomcat/conf/tomcat-users.xml
+  notify: restarttomcat  
+
+- name: i want to deploy maha java war file into webapps 
+  get_url:
+    url: https://s3.amazonaws.com/maha4iac/mahaLogin.war
+    dest: /usr/share/tomcat/webapps/mahaLogin.war
+    force_basic_auth: yes
+
+
+
+
